@@ -23,8 +23,8 @@ const Feature = () => {
         <ScrollAnimationWrapper className="flex w-full justify-end">
           <motion.div className="h-full w-full p-4" variants={scrollAnimation}>
             <Image
-              src="/assets/Illustration2.png"
-              alt="VPN Illustrasi"
+              src="/char2.svg"
+              alt="Character"
               layout="responsive"
               quality={100}
               height={414}
@@ -39,27 +39,28 @@ const Feature = () => {
             We Provide Many Features You Can Use
           </h3>
           <p className="my-2 text-black-500">
-            You can explore the features that we provide with fun and have their
-            own functions each feature.
+            You can explore the features by clicking the cards provided below
           </p>
-          <ul className="text-black-500 self-start list-inside ml-8">
-            {features.map((feature, index) => (
-              <motion.li
-                className="relative circle-check custom-list"
-                custom={{duration: 2 + index}}
-                variants={scrollAnimation}
-                key={feature}
-                whileHover={{
-                scale : 1.1,
-                transition: {
-                  duration: .2
-                }
-                }}>
-                  {feature}
-              </motion.li>
-              )
-            )}
-          </ul>
+          <div>
+            <ul>
+              <div className="flex flex-row">
+              <img src="https://st4.depositphotos.com/18270392/29056/v/450/depositphotos_290566006-stock-illustration-tick-icon-vector-symbol-checkmark.jpg" className="w-10" alt="" />
+              <li className="mt-2 hover:text-lg duration-500">You can get alerts about weather conditions.</li>
+              </div>
+              <div className="flex flex-row">
+              <img src="https://st4.depositphotos.com/18270392/29056/v/450/depositphotos_290566006-stock-illustration-tick-icon-vector-symbol-checkmark.jpg" className="w-10 h-10"  alt="" />
+              <li className="mt-2 hover:text-lg duration-500">You can get current weather of any city in the world with graphical analytics.</li>
+              </div>
+              <div className="flex flex-row">
+              <img src="https://st4.depositphotos.com/18270392/29056/v/450/depositphotos_290566006-stock-illustration-tick-icon-vector-symbol-checkmark.jpg" className="w-10" alt="" />
+              <li className="mt-2 hover:text-lg duration-500">You can see future weather forecast.</li>
+              </div>
+              <div className="flex flex-row">
+              <img src="https://st4.depositphotos.com/18270392/29056/v/450/depositphotos_290566006-stock-illustration-tick-icon-vector-symbol-checkmark.jpg" className="w-10" alt="" />
+              <li className="mt-2 hover:text-lg duration-500">You can see past weather records.</li>
+              </div>
+            </ul>
+          </div>
         </motion.div>
         </ScrollAnimationWrapper>
       </div>
