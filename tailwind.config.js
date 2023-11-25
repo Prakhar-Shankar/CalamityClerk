@@ -4,6 +4,7 @@ module.exports = {
     "./pages/**/*.js",
     "./components/*.js",
     "./components/**/*.js",
+    "./node_modules/@tremor/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     boxShadow: {

@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import Testimoni from "./Testimoni";
 import ButtonPrimary from "./misc/ButtonPrimary";
@@ -8,9 +9,12 @@ import { motion } from "framer-motion";
 import getScrollAnimation from "../utils/getScrollAnimation";
 import ScrollAnimationWrapper from "./Layout/ScrollAnimationWrapper";
 
+
+
 const Pricing = () => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
-
+  const weatherPage = "/weatherPage";
+  //now below is the code for the pricing section
   return (
     <div
       className="bg-gradient-to-b from-white-300 to-white-500 w-full py-14"
@@ -70,8 +74,11 @@ const Pricing = () => {
                   </li>
                 </ul>
                 <div className="flex flex-col w-full justify-center mb-8 flex-none mt-12">
-                  
+                  <Link  href={weatherPage}>
+                    <a>
                   <ButtonOutline>Select</ButtonOutline>
+                  </a>
+                  </Link>
                 </div>
               </motion.div>
             </ScrollAnimationWrapper>
@@ -155,7 +162,7 @@ const Pricing = () => {
                 </ul>
                 <div className="flex flex-col w-full justify-center mb-8 flex-none mt-12">
                 
-                  <ButtonOutline>Select</ButtonOutline>
+                  <ButtonOutline href="">Select</ButtonOutline>
                 </div>
               </motion.div>
             </ScrollAnimationWrapper>
