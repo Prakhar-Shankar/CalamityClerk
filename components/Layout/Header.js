@@ -25,7 +25,13 @@ const Header = () => {
           <div className="col-start-1 col-end-2 flex items-center">
            
           </div>
-          <ul className="hidden lg:flex col-start-4 col-end-8 text-black-500  items-center">
+          <ul className="hidden lg:flex col-start-4 col-end-8 text-black-500  items-center justify-center space-x-4">
+            <div className="cursor-pointer">
+              <Link href="/">
+              <img src="/cc.png" alt=""  className="hover:scale-95 transition h-16"/>
+              </Link>
+              
+            </div>
             <LinkScroll
               activeClass="active"
               to="about"
