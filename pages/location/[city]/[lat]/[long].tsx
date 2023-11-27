@@ -1,5 +1,14 @@
+import { ApolloClient, InMemoryCache } from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: 'API_URL',
+  cache: new InMemoryCache(),
+});
+
 import React from 'react';
 import { useRouter } from 'next/router';
+import fetchWeatherQuery from '../../../../graphql/queries/fetchWeatherQueries';
+
 
 type Props = {
   params?: {
@@ -9,11 +18,28 @@ type Props = {
   };
 };
 
-function ClimatePage({ params }: Props) {
-  const router = useRouter();
 
-  // Use values from URL parameters if available, otherwise use defaults
-  const { city = 'DefaultCity', lat = 'DefaultLat', long = 'DefaultLong' } = params || router.query;
+async function ClimatePage({ params }: Props) {
+  const client = new ApolloClient({
+    uri: 'API_URL',
+    cache: new InMemoryCache(),
+  });
+
+  const { data } = await client.query({
+    query: fetchWeatherQuery,
+    variables: {
+      current_weather: "true",
+      longitude: params?.long,
+      latitude: params?.lat,
+      timezone: 'GMT'
+    }
+  });
+
+  const results: Root = data.myQuery;
+
+  console.log(results);
+
+  const { city, lat, long } = params || {}; // Destructure city, lat, and long from params
 
   return (
     <div>
@@ -23,3 +49,4 @@ function ClimatePage({ params }: Props) {
 }
 
 export default ClimatePage;
+

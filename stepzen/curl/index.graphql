@@ -1,0 +1,58 @@
+type Hourly {
+  cloud_cover: [Int]
+  cloud_cover_high: [Int]
+  cloud_cover_low: [Int]
+  cloud_cover_mid: [Int]
+  rain: [Float]
+  relative_humidity_2m: [Int]
+  showers: [Int]
+  snow_depth: [Int]
+  snowfall: [Int]
+  temperature_120m: [Float]
+  temperature_180m: [Float]
+  temperature_2m: [Float]
+  temperature_80m: [Float]
+  time: [DateTime]
+  visibility: [Int]
+  wind_speed_120m: [Float]
+}
+
+type HourlyUnits {
+  cloud_cover: String
+  cloud_cover_high: String
+  cloud_cover_low: String
+  cloud_cover_mid: String
+  rain: String
+  relative_humidity_2m: String
+  showers: String
+  snow_depth: String
+  snowfall: String
+  temperature_120m: String
+  temperature_180m: String
+  temperature_2m: String
+  temperature_80m: String
+  time: String
+  visibility: String
+  wind_speed_120m: String
+}
+
+type Root {
+  elevation: Int
+  generationtime_ms: Float
+  hourly: Hourly
+  hourly_units: HourlyUnits
+  latitude: Float
+  longitude: Float
+  timezone: String
+  timezone_abbreviation: String
+  utc_offset_seconds: Int
+}
+
+type Query {
+  myQuery(
+    hourly: String
+    latitude: String
+    longitude: String
+    timezone: String
+  ): Root @rest(endpoint: "https://api.open-meteo.com/v1/forecast")
+}
