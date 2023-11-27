@@ -1,14 +1,6 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client';
-
-const client = new ApolloClient({
-  uri: 'API_URL',
-  cache: new InMemoryCache(),
-});
-
-import React from 'react';
-import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+import { getClient } from '../../../../apollo-client';
 import fetchWeatherQuery from '../../../../graphql/queries/fetchWeatherQueries';
-
 
 type Props = {
   params?: {
@@ -18,35 +10,62 @@ type Props = {
   };
 };
 
+function ClimatePage({ params }: Props) {
+  // Ensure params is an object with default values
+  const { city = 'DefaultCity', lat = 'DefaultLat', long = 'DefaultLong' } = params || {};
+  
+  const [results, setResults] = useState<Root | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-async function ClimatePage({ params }: Props) {
-  const client = new ApolloClient({
-    uri: 'API_URL',
-    cache: new InMemoryCache(),
-  });
+  useEffect(() => {
+    const client = getClient();
+    const fetchData = async () => {
+      try {
+        const { data } = await client.query({
+          query: fetchWeatherQuery,
+          variables: {
+            longitude: long,
+            latitude: lat,
+            timezone: 'GMT',
+          },
+        });
+  
+        console.log('GraphQL Response:', data);
+  
+        const fetchedResults: Root = data.myQuery;
+        setResults(fetchedResults);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setError('Error fetching data');
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchData();
+  }, [lat, long]);
+  
 
-  const { data } = await client.query({
-    query: fetchWeatherQuery,
-    variables: {
-      current_weather: "true",
-      longitude: params?.long,
-      latitude: params?.lat,
-      timezone: 'GMT'
-    }
-  });
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-  const results: Root = data.myQuery;
-
-  console.log(results);
-
-  const { city, lat, long } = params || {}; // Destructure city, lat, and long from params
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div>
       Welcome to the climate page: {city} {lat} {long}
+      {results && (
+        <div>
+          {/* Render content using the fetched data */}
+          {/* For example: <p>Temperature: {results.temperature}</p> */}
+        </div>
+      )}
     </div>
   );
 }
 
 export default ClimatePage;
-
