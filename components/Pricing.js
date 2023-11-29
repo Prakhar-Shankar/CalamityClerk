@@ -14,6 +14,7 @@ import ScrollAnimationWrapper from "./Layout/ScrollAnimationWrapper";
 const Pricing = () => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   const weatherPage = "/weatherPage";
+  const forecastPage = "/forecastPage";
   //now below is the code for the pricing section
   return (
     <div
@@ -161,8 +162,12 @@ const Pricing = () => {
                   </li>
                 </ul>
                 <div className="flex flex-col w-full justify-center mb-8 flex-none mt-12">
-                
+                  <Link href={forecastPage}>
+                  <a>
                   <ButtonOutline href="">Select</ButtonOutline>
+                  </a>
+                  </Link>
+                  
                 </div>
               </motion.div>
             </ScrollAnimationWrapper>

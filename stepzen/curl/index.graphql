@@ -50,6 +50,8 @@ type Root {
 
 type Query {
   myQuery(
+    current_weather: String
+    daily: String
     hourly: String
     latitude: String
     longitude: String

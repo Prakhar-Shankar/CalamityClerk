@@ -41,13 +41,11 @@ const fetchWeatherQuery = gql`
         visibility
         wind_speed_120m
       }
-      latitude
-      longitude
-      timezone
-      timezone_abbreviation
-      utc_offset_seconds
     }
   }
+    
+     
+  
 `;
 
 export default fetchWeatherQuery;
